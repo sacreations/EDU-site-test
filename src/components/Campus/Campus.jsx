@@ -23,7 +23,7 @@ const Campus = () => {
       </div>
       <button className="btn dark-btn">
         See more here
-        <img src={white_arrow} alt="white_arrow" />
+        <img src={white_arrow} alt="Next" />
       </button>
     </div>
   );
