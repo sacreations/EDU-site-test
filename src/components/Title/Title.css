@@ -1,14 +1,92 @@
 .title{
     text-align: center;
+    margin: 80px 0 50px;
+    position: relative;
     color: #212EA0;
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
-    margin: 70px 0 30px;
 }
+
+.title p {
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.title p::before,
+.title p::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+    top: 50%;
+}
+
+.title p::before {
+    left: -40px;
+}
+
+.title p::after {
+    right: -40px;
+}
+
 .title h2{
-    font-size: 32px;
-    color: #000F38;
-    margin-top:5px;
-    text-transform: none;
+    font-size: 36px;
+    color: var(--text-dark);
+    margin-top: 10px;
+    text-transform: capitalize;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.title h2::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background: var(--primary);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+    .title {
+        margin: 60px 0 40px;
+    }
+    
+    .title h2 {
+        font-size: 30px;
+    }
+    
+    .title p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .title h2 {
+        font-size: 26px;
+    }
+    
+    .title p::before,
+    .title p::after {
+        width: 20px;
+    }
+    
+    .title p::before {
+        left: -30px;
+    }
+    
+    .title p::after {
+        right: -30px;
+    }
 }
