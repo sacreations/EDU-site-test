@@ -4,17 +4,17 @@ import dark_arrow from "../../assets/dark-arrow.png";
 
 const Hero = () => {
   return (
-    <div className="hero container">
+    <div className="hero container" id="home">
       <div className="hero-text">
-        <h1>We Ensure better education for a better world</h1>
+        <h1>We Ensure Better Education for a Better World</h1>
         <p>
-          Our cutting-edge curriculum is designed to empower student with the
-          Knowledge , skills,and experience needed to excel in the dynamic field
+          Our cutting-edge curriculum is designed to empower students with the
+          knowledge, skills, and experience needed to excel in the dynamic field
           of education
         </p>
         <button className="btn">
           Explore more
-          <img src={dark_arrow} alt="" />
+          <img src={dark_arrow} alt="Arrow icon" />
         </button>
       </div>
     </div>

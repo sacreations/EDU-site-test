@@ -1,11 +1,10 @@
 import React from "react";
 import "./Campus.css";
+// Just import white arrow, which seems to work
 import white_arrow from "../../assets/white-arrow.png";
 
-// The issue is with the gallery-1.png import path
-// Instead, let's reference images that should be in the public folder
 const Campus = () => {
-  // Create array of gallery items without importing them directly
+  // Define gallery items with external placeholder URLs instead of imports
   const galleryItems = [
     { id: 1, alt: "Modern university lecture hall" },
     { id: 2, alt: "Student collaboration space" },
@@ -18,9 +17,9 @@ const Campus = () => {
       <div className="gallery">
         {galleryItems.map((item) => (
           <div className="gallery-item" key={item.id}>
-            {/* Use public path-based URLs instead of imports */}
+            {/* Use external placeholder images instead of local imports */}
             <img 
-              src={`https://placehold.co/600x400/212EA0/FFFFFF?text=Campus+${item.id}`}
+              src={`https://via.placeholder.com/400x300/212EA0/FFFFFF?text=Campus+${item.id}`}
               alt={item.alt}
               className="gallery-image"
             />

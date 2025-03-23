@@ -11,15 +11,23 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Hero />
+      <div id="home">
+        <Hero />
+      </div>
       <div className="container">
-        <Title subtitle="our program" title="what we offer" />
-        <Programs />
+        <div id="program">
+          <Title subtitle="our program" title="what we offer" />
+          <Programs />
+        </div>
         <About />
-        <Title subtitle="Gallery" title="Campus Photos" />
-        <Campus />
-        <Title subtitle="TESTIMONIALS" title="what student says" />
-        <Testimonials />
+        <div id="campus">
+          <Title subtitle="Gallery" title="Campus Photos" />
+          <Campus />
+        </div>
+        <div id="testimonials">
+          <Title subtitle="TESTIMONIALS" title="what student says" />
+          <Testimonials />
+        </div>
       </div>
     </div>
   );

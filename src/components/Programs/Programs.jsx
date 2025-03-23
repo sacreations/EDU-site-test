@@ -1,5 +1,6 @@
 import React from "react";
 import "../Programs/Programs.css";
+// Import program images and icons
 import Program_1 from "../../assets/program-1.png";
 import Program_2 from "../../assets/program-2.png";
 import Program_3 from "../../assets/program-3.png";
@@ -29,13 +30,27 @@ const Programs = () => {
     },
   ];
 
+  // Add a fallback function for images
+  const handleImageError = (e) => {
+    e.target.src = "https://via.placeholder.com/400x300/212EA0/FFFFFF?text=Program";
+    e.target.onerror = null;
+  };
+
   return (
     <div className="programs">
       {programsData.map((program, index) => (
         <div className="program" key={index}>
-          <img src={program.image} alt={program.alt} />
+          <img 
+            src={program.image} 
+            alt={program.alt} 
+            onError={handleImageError}
+          />
           <div className="caption">
-            <img src={program.icon} alt={`${program.alt}-icon`} />
+            <img 
+              src={program.icon} 
+              alt={`${program.alt}-icon`}
+              onError={handleImageError} 
+            />
             <p>{program.title}</p>
           </div>
         </div>
