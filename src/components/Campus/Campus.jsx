@@ -17,7 +17,7 @@ const Campus = () => {
   ];
 
   return (
-    <div className="campus-section" id="campus">
+    <div className="campus" id="campus">
       <div className="gallery" aria-label="Campus photo gallery">
         {galleryImages.map((image, index) => (
           <figure className="gallery-item" key={index}>

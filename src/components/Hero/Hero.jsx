@@ -4,7 +4,7 @@ import dark_arrow from "../../assets/dark-arrow.png";
 
 const Hero = () => {
   return (
-    <div className="hero-container">
+    <div className="hero">
       <div className="hero-content container">
         <div className="hero-text">
           <h1 className="hero-title">We Ensure Better Education for a Better World</h1>
@@ -19,7 +19,6 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="hero-overlay" aria-hidden="true"></div>
     </div>
   );
 };

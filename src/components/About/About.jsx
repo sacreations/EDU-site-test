@@ -11,11 +11,9 @@ const About = () => {
   };
 
   return (
-    <article className="about-section" id="about">
-      <div className="about-media">
-        <figure className="about-figure">
-          <img src={about_img} alt="University campus aerial view" className="about-img" />
-        </figure>
+    <article className="about" id="about">
+      <div className="about-left">
+        <img src={about_img} alt="University campus aerial view" className="about-img" />
         <button 
           className="play-button" 
           onClick={toggleVideo} 
@@ -25,7 +23,7 @@ const About = () => {
         </button>
       </div>
       
-      <div className="about-content">
+      <div className="about-right">
         <header className="about-header">
           <h3 className="about-subtitle">About University</h3>
           <h2 className="about-title">Nurturing Tomorrow's Leaders Today</h2>

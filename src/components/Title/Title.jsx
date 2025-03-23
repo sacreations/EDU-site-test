@@ -3,10 +3,10 @@ import "../../components/Title/Title.css";
 
 const Title = ({ subtitle, title }) => {
   return (
-    <div className="title">
-      <p>{subtitle}</p>
-      <h2>{title}</h2>
-    </div>
+    <header className="title">
+      <p className="title-subtitle">{subtitle}</p>
+      <h2 className="title-heading">{title}</h2>
+    </header>
   );
 };
 export default Title;

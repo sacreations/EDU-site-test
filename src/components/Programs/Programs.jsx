@@ -40,7 +40,7 @@ const Programs = () => {
   };
 
   return (
-    <div className="programs-container">
+    <div className="programs">
       {programsData.map((program, index) => (
         <article className="program" key={index}>
           <figure className="program-figure">

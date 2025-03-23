@@ -98,29 +98,27 @@ const Testimonials = () => {
 
   return (
     <div 
-      className="testimonials-section" 
+      className="testimonials" 
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      <div className="testimonial-controls">
-        <button 
-          className="slider-btn back-btn" 
-          onClick={slideBackward}
-          aria-label="Previous testimonial"
-          disabled={position >= 0}
-        >
-          <img src={back_icon} alt="" aria-hidden="true" />
-        </button>
-        
-        <button 
-          className="slider-btn next-btn" 
-          onClick={slideForward}
-          aria-label="Next testimonial"
-          disabled={position <= -(testimonialCount - 1)}
-        >
-          <img src={next_icon} alt="" aria-hidden="true" />
-        </button>
-      </div>
+      <button 
+        className="slider-btn next-btn" 
+        onClick={slideForward}
+        aria-label="Next testimonial"
+        disabled={position <= -(testimonialCount - 1)}
+      >
+        <img src={next_icon} alt="" aria-hidden="true" />
+      </button>
+      
+      <button 
+        className="slider-btn back-btn" 
+        onClick={slideBackward}
+        aria-label="Previous testimonial"
+        disabled={position >= 0}
+      >
+        <img src={back_icon} alt="" aria-hidden="true" />
+      </button>
       
       <div 
         className="slider" 
