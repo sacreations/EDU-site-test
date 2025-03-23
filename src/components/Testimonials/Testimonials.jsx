@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../Testimonials/Testimonials.css";
 import next_icon from "../../assets/next-icon.png";
 import back_icon from "../../assets/back-icon.png";
@@ -10,6 +10,7 @@ import user_4 from "../../assets/user-4.png";
 const Testimonials = () => {
   const slider = useRef();
   const [position, setPosition] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
   const testimonialCount = 4;
   
   const testimonialData = [
@@ -59,27 +60,71 @@ const Testimonials = () => {
     }
   };
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        slideBackward();
+      } else if (e.key === 'ArrowRight') {
+        slideForward();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [position]);
+
+  // Handle touch events for swipe
+  const handleTouchStart = (e) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStart) return;
+    
+    const touchEnd = e.touches[0].clientX;
+    const diff = touchStart - touchEnd;
+    
+    // Swipe threshold
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        slideForward();
+      } else {
+        slideBackward();
+      }
+      setTouchStart(null);
+    }
+  };
+
   return (
-    <div className="testimonials">
-      <img 
-        src={next_icon} 
-        alt="Next testimonial" 
-        className="next-btn" 
-        onClick={slideForward} 
-      />
-      <img
-        src={back_icon}
-        alt="Previous testimonial"
-        className="back-btn"
+    <div 
+      className="testimonials" 
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+    >
+      <button 
+        className="slider-btn next-btn" 
+        onClick={slideForward}
+        aria-label="Next testimonial"
+        disabled={position <= -(testimonialCount - 1)}
+      >
+        <img src={next_icon} alt="" />
+      </button>
+      <button
+        className="slider-btn back-btn"
         onClick={slideBackward}
-      />
-      <div className="slider">
+        aria-label="Previous testimonial"
+        disabled={position >= 0}
+      >
+        <img src={back_icon} alt="" />
+      </button>
+      <div className="slider" aria-live="polite">
         <ul ref={slider}>
           {testimonialData.map((item, index) => (
             <li key={index}>
-              <div className="slide">
+              <div className="slide" aria-hidden={position !== -index}>
                 <div className="user-info">
-                  <img src={item.image} alt={`user-${index+1}`} />
+                  <img src={item.image} alt="" />
                   <div>
                     <h3>{item.name}</h3>
                     <span>{item.location}</span>
@@ -90,6 +135,19 @@ const Testimonials = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="testimonial-indicators">
+        {testimonialData.map((_, index) => (
+          <button 
+            key={index}
+            className={`indicator ${position === -index ? 'active' : ''}`}
+            onClick={() => {
+              setPosition(-index);
+              slider.current.style.transform = `translate(${-index * 25}%)`;
+            }}
+            aria-label={`Go to testimonial ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
