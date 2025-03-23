@@ -111,6 +111,31 @@ a{
     background: var(--primary-dark);
 }
 
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+/* Site footer */
+.site-footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 40px 0;
+    text-align: center;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }

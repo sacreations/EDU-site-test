@@ -98,45 +98,61 @@ const Testimonials = () => {
 
   return (
     <div 
-      className="testimonials" 
+      className="testimonials-section" 
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      <button 
-        className="slider-btn next-btn" 
-        onClick={slideForward}
-        aria-label="Next testimonial"
-        disabled={position <= -(testimonialCount - 1)}
+      <div className="testimonial-controls">
+        <button 
+          className="slider-btn back-btn" 
+          onClick={slideBackward}
+          aria-label="Previous testimonial"
+          disabled={position >= 0}
+        >
+          <img src={back_icon} alt="" aria-hidden="true" />
+        </button>
+        
+        <button 
+          className="slider-btn next-btn" 
+          onClick={slideForward}
+          aria-label="Next testimonial"
+          disabled={position <= -(testimonialCount - 1)}
+        >
+          <img src={next_icon} alt="" aria-hidden="true" />
+        </button>
+      </div>
+      
+      <div 
+        className="slider" 
+        aria-live="polite" 
+        aria-roledescription="carousel"
+        aria-label="Student testimonials"
       >
-        <img src={next_icon} alt="" />
-      </button>
-      <button
-        className="slider-btn back-btn"
-        onClick={slideBackward}
-        aria-label="Previous testimonial"
-        disabled={position >= 0}
-      >
-        <img src={back_icon} alt="" />
-      </button>
-      <div className="slider" aria-live="polite">
-        <ul ref={slider}>
+        <ul ref={slider} className="testimonial-list">
           {testimonialData.map((item, index) => (
-            <li key={index}>
-              <div className="slide" aria-hidden={position !== -index}>
+            <li 
+              key={index} 
+              className="testimonial-item"
+              aria-hidden={position !== -index}
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${testimonialCount}`}
+            >
+              <blockquote className="slide">
                 <div className="user-info">
-                  <img src={item.image} alt="" />
-                  <div>
-                    <h3>{item.name}</h3>
-                    <span>{item.location}</span>
+                  <img src={item.image} alt="" aria-hidden="true" />
+                  <div className="user-details">
+                    <cite className="user-name">{item.name}</cite>
+                    <span className="user-location">{item.location}</span>
                   </div>
                 </div>
-                <p>{item.testimonial}</p>
-              </div>
+                <p className="testimonial-text">"{item.testimonial}"</p>
+              </blockquote>
             </li>
           ))}
         </ul>
       </div>
-      <div className="testimonial-indicators">
+      
+      <div className="testimonial-indicators" role="tablist" aria-label="Select a testimonial">
         {testimonialData.map((_, index) => (
           <button 
             key={index}
@@ -145,7 +161,9 @@ const Testimonials = () => {
               setPosition(-index);
               slider.current.style.transform = `translate(${-index * 25}%)`;
             }}
-            aria-label={`Go to testimonial ${index + 1}`}
+            aria-label={`Show testimonial ${index + 1}`}
+            aria-selected={position === -index}
+            role="tab"
           />
         ))}
       </div>

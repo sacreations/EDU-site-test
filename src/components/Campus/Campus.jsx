@@ -10,17 +10,17 @@ import white_arrow from "../../assets/white-arrow.png";
 const Campus = () => {
   // Create array of gallery images with their imports
   const galleryImages = [
-    { src: gallery_1, alt: "Modern university lecture hall" },
-    { src: gallery_2, alt: "Student collaboration space" },
-    { src: gallery_3, alt: "Campus sports facilities" },
-    { src: gallery_4, alt: "University library" }
+    { src: gallery_1, alt: "Modern university lecture hall", title: "Lecture Hall" },
+    { src: gallery_2, alt: "Student collaboration space", title: "Collaboration Hub" },
+    { src: gallery_3, alt: "Campus sports facilities", title: "Sports Complex" },
+    { src: gallery_4, alt: "University library", title: "Main Library" }
   ];
 
   return (
-    <div className="campus" id="campus">
-      <div className="gallery">
+    <div className="campus-section" id="campus">
+      <div className="gallery" aria-label="Campus photo gallery">
         {galleryImages.map((image, index) => (
-          <div className="gallery-item" key={index}>
+          <figure className="gallery-item" key={index}>
             <img 
               src={image.src} 
               alt={image.alt}
@@ -30,13 +30,14 @@ const Campus = () => {
                 e.target.src = "https://via.placeholder.com/400x300/212EA0/FFFFFF?text=Campus+Image";
               }}
             />
-          </div>
+            <figcaption className="gallery-caption">{image.title}</figcaption>
+          </figure>
         ))}
       </div>
-      <button className="btn dark-btn">
+      <a href="#gallery" className="btn dark-btn">
         See more here
-        <img src={white_arrow} alt="Arrow icon" />
-      </button>
+        <img src={white_arrow} alt="" aria-hidden="true" />
+      </a>
     </div>
   );
 };

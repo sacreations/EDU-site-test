@@ -15,18 +15,21 @@ const Programs = () => {
       icon: program_icon_1,
       title: "Undergraduate Programs",
       alt: "undergraduate-program",
+      description: "Bachelor degrees in various disciplines for high school graduates."
     },
     {
       image: Program_2,
       icon: program_icon_2,
       title: "Graduate Programs",
       alt: "graduate-program",
+      description: "Advanced study programs leading to master's degrees for college graduates."
     },
     {
       image: Program_3,
       icon: program_icon_3,
       title: "Doctoral Programs",
       alt: "doctoral-program",
+      description: "Research-focused doctorate degrees for advanced academic pursuits."
     },
   ];
 
@@ -37,23 +40,29 @@ const Programs = () => {
   };
 
   return (
-    <div className="programs">
+    <div className="programs-container">
       {programsData.map((program, index) => (
-        <div className="program" key={index}>
-          <img 
-            src={program.image} 
-            alt={program.alt} 
-            onError={handleImageError}
-          />
-          <div className="caption">
+        <article className="program" key={index}>
+          <figure className="program-figure">
             <img 
-              src={program.icon} 
-              alt={`${program.alt}-icon`}
-              onError={handleImageError} 
+              src={program.image} 
+              alt={program.alt} 
+              onError={handleImageError}
+              className="program-image"
             />
-            <p>{program.title}</p>
-          </div>
-        </div>
+            <figcaption className="caption">
+              <img 
+                src={program.icon} 
+                alt="" 
+                aria-hidden="true"
+                onError={handleImageError} 
+                className="program-icon"
+              />
+              <h3 className="program-title">{program.title}</h3>
+              <p className="program-description sr-only">{program.description}</p>
+            </figcaption>
+          </figure>
+        </article>
       ))}
     </div>
   );

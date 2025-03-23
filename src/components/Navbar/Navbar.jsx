@@ -26,26 +26,48 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+    // Toggle aria-expanded attribute on the button
+    document.getElementById("menu-toggle").setAttribute("aria-expanded", !mobileMenuOpen);
   };
 
   return (
-    <nav className={`container ${sticky ? "dark-nav" : ""} ${mobileMenuOpen ? "mobile-open" : ""}`}>
-      <img src={logo} alt="Edusity Logo" className="logo" />
-      <div className="menu-toggle" onClick={toggleMobileMenu}>
-        <div className="hamburger"></div>
+    <header className={`site-header ${sticky ? "dark-nav" : ""} ${mobileMenuOpen ? "mobile-open" : ""}`}>
+      <div className="container">
+        <nav className="main-navigation">
+          <a href="#home" className="logo-link">
+            <img src={logo} alt="Edusity Logo" className="logo" />
+          </a>
+          
+          <button 
+            id="menu-toggle"
+            className="menu-toggle" 
+            onClick={toggleMobileMenu}
+            aria-controls="primary-menu"
+            aria-expanded="false"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            <span className="hamburger"></span>
+            <span className="sr-only">Menu</span>
+          </button>
+          
+          <ul id="primary-menu" className="nav-menu" aria-hidden={mobileMenuOpen ? "false" : "true"}>
+            {navItems.map((item, index) => (
+              <li key={index} className="menu-item">
+                {item.isButton ? (
+                  <a href={item.href} className="btn nav-button">
+                    {item.name}
+                  </a>
+                ) : (
+                  <a href={item.href} className="nav-link">
+                    {item.name}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-      <ul className="nav-menu">
-        {navItems.map((item, index) => (
-          <li key={index}>
-            {item.isButton ? (
-              <button className="btn">{item.name}</button>
-            ) : (
-              <a href={item.href}>{item.name}</a>
-            )}
-          </li>
-        ))}
-      </ul>
-    </nav>
+    </header>
   );
 };
 export default Navbar;
