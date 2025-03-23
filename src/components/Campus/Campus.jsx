@@ -1,11 +1,12 @@
 import React from "react";
 import "./Campus.css";
-// Import images directly from public directory
 import white_arrow from "../../assets/white-arrow.png";
 
+// The issue is with the gallery-1.png import path
+// Instead, let's reference images that should be in the public folder
 const Campus = () => {
-  // Use require syntax for the problematic images
-  const galleryImages = [
+  // Create array of gallery items without importing them directly
+  const galleryItems = [
     { id: 1, alt: "Modern university lecture hall" },
     { id: 2, alt: "Student collaboration space" },
     { id: 3, alt: "Campus sports facilities" },
@@ -15,16 +16,15 @@ const Campus = () => {
   return (
     <div className="campus" id="campus">
       <div className="gallery">
-        {galleryImages.map((image) => (
-          <img 
-            key={image.id}
-            src={`/assets/gallery-${image.id}.png`} 
-            alt={image.alt}
-            onError={(e) => {
-              e.target.src = "https://via.placeholder.com/300x200?text=Campus+Image";
-              e.target.onerror = null;
-            }}
-          />
+        {galleryItems.map((item) => (
+          <div className="gallery-item" key={item.id}>
+            {/* Use public path-based URLs instead of imports */}
+            <img 
+              src={`https://placehold.co/600x400/212EA0/FFFFFF?text=Campus+${item.id}`}
+              alt={item.alt}
+              className="gallery-image"
+            />
+          </div>
         ))}
       </div>
       <button className="btn dark-btn">

@@ -1,15 +1,45 @@
 .campus{
     margin: 80px auto;
-    width:90%;
+    width: 90%;
     text-align: center;
 }
 .gallery{
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 }
-.gallery img{
+.gallery-item {
     width: 23%;
     border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-10px);
+}
+.gallery-image {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .gallery {
+        justify-content: center;
+        gap: 20px;
+    }
+    .gallery-item {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        width: 100%;
+    }
 }
