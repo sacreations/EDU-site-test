@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../Testimonials/Testimonials.css";
 import next_icon from "../../assets/next-icon.png";
 import back_icon from "../../assets/back-icon.png";
@@ -9,99 +9,86 @@ import user_4 from "../../assets/user-4.png";
 
 const Testimonials = () => {
   const slider = useRef();
-  let tx = 0;
+  const [position, setPosition] = useState(0);
+  const testimonialCount = 4;
+  
+  const testimonialData = [
+    {
+      image: user_1,
+      name: "Emily Williams",
+      location: "Edusity, USA",
+      testimonial:
+        "Choosing to pursue my Degree at Edusity was one of the best decisions I've ever made. The Supportive Community, state-of-the-art facilities, and commitment to academic excellence have truly exceeded my expectations.",
+    },
+    {
+      image: user_2,
+      name: "William Jackson",
+      location: "Edusity, USA",
+      testimonial:
+        "The professors at Edusity are truly exceptional. They bring real-world experience to the classroom and are always available to provide guidance and support. I've gained not just knowledge, but valuable industry connections.",
+    },
+    {
+      image: user_3,
+      name: "Sarah Thompson",
+      location: "Edusity, USA",
+      testimonial:
+        "The global perspective I've gained at Edusity has been invaluable. Through exchange programs and diverse classmates, I've developed a deep understanding of international education systems and cultural approaches to learning.",
+    },
+    {
+      image: user_4,
+      name: "Michael Chen",
+      location: "Edusity, USA",
+      testimonial:
+        "The research opportunities at Edusity have prepared me for a successful career in academia. Working alongside renowned faculty members on cutting-edge projects has been the highlight of my educational experience.",
+    },
+  ];
+
   const slideForward = () => {
-    if (tx > -50) {
-      tx -= 25;
+    if (position > -(testimonialCount - 1)) {
+      const newPosition = position - 1;
+      setPosition(newPosition);
+      slider.current.style.transform = `translate(${newPosition * 25}%)`;
     }
-    slider.current.style.transform = `translate(${tx}%)`;
   };
+
   const slideBackward = () => {
-    if (tx < 0) {
-      tx += 25;
+    if (position < 0) {
+      const newPosition = position + 1;
+      setPosition(newPosition);
+      slider.current.style.transform = `translate(${newPosition * 25}%)`;
     }
-    slider.current.style.transform = `translate(${tx}%)`;
   };
 
   return (
     <div className="testimonials">
-      <img src={next_icon} alt="" className="next-btn" onClick={slideForward} />
+      <img 
+        src={next_icon} 
+        alt="Next testimonial" 
+        className="next-btn" 
+        onClick={slideForward} 
+      />
       <img
         src={back_icon}
-        alt=""
+        alt="Previous testimonial"
         className="back-btn"
         onClick={slideBackward}
       />
       <div className="slider">
         <ul ref={slider}>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_1} alt="user-1" />
-                <div>
-                  <h3>Emily Williams 1</h3>
-                  <span>Edusity, USA</span>
+          {testimonialData.map((item, index) => (
+            <li key={index}>
+              <div className="slide">
+                <div className="user-info">
+                  <img src={item.image} alt={`user-${index+1}`} />
+                  <div>
+                    <h3>{item.name}</h3>
+                    <span>{item.location}</span>
+                  </div>
                 </div>
+                <p>{item.testimonial}</p>
               </div>
-              <p>
-                Choosing to pursue my Degree at Edusity was one of the best
-                decisions I've ever made. The Supportive Community,
-                state-of-the-art facilities, and commitment to academic
-                excellence have truly exceeded my expectations.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_2} alt="user-2" />
-                <div>
-                  <h3>William Jackson 2</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Choosing to pursue my Degree at Edusity was one of the best
-                decisions I've ever made. The Supportive Community,
-                state-of-the-art facilities, and commitment to academic
-                excellence have truly exceeded my expectations.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_3} alt="user-3" />
-                <div>
-                  <h3>Emily Williams 3</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Choosing to pursue my Degree at Edusity was one of the best
-                decisions I've ever made. The Supportive Community,
-                state-of-the-art facilities, and commitment to academic
-                excellence have truly exceeded my expectations.
-              </p>
-            </div>
-          </li>
-          <li>
-            <div className="slide">
-              <div className="user-info">
-                <img src={user_4} alt="user-4" />
-                <div>
-                  <h3>William Jackson 4</h3>
-                  <span>Edusity, USA</span>
-                </div>
-              </div>
-              <p>
-                Choosing to pursue my Degree at Edusity was one of the best
-                decisions I've ever made. The Supportive Community,
-                state-of-the-art facilities, and commitment to academic
-                excellence have truly exceeded my expectations.
-              </p>
-            </div>
-          </li>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

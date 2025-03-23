@@ -3,24 +3,39 @@ import "./Navbar.css";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
-  const [sticky, setsticky] = useState(false);
+  const [sticky, setSticky] = useState(false);
+  
+  const navItems = [
+    { name: "Home", isButton: false },
+    { name: "Program", isButton: false },
+    { name: "About Us", isButton: false },
+    { name: "Campus", isButton: false },
+    { name: "Testimonials", isButton: false },
+    { name: "Contact Us", isButton: true },
+  ];
+
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.screenY > 10 ? setsticky(true) : setsticky(false);
-    });
+    const handleScroll = () => {
+      setSticky(window.scrollY > 10);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <nav className={`container ${sticky ? "dark-nav" : ""}`}>
-      <img src={logo} alt="" className="logo" />
+      <img src={logo} alt="Edusity Logo" className="logo" />
       <ul>
-        <li>Home</li>
-        <li>Program</li>
-        <li>About Us</li>
-        <li>Campus</li>
-        <li>Testimorials</li>
-        <li>
-          <button className="btn">Contact Us</button>
-        </li>
+        {navItems.map((item, index) => (
+          <li key={index}>
+            {item.isButton ? (
+              <button className="btn">{item.name}</button>
+            ) : (
+              item.name
+            )}
+          </li>
+        ))}
       </ul>
     </nav>
   );

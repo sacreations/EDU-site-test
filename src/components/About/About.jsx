@@ -7,17 +7,17 @@ const About = () => {
   return (
     <div className="about">
       <div className="about-left">
-        <img src={about_img} alt="" className="about-img" />
-        <img src={play_icon} alt="" className="play-icon" />
+        <img src={about_img} alt="University campus" className="about-img" />
+        <img src={play_icon} alt="Play video" className="play-icon" />
       </div>
       <div className="about-right">
         <h3>About University</h3>
         <h2>Nurturing Tomorrow's Leaders Today</h2>
         <p>
-          Embark on transformative educational journey with our university's
-          comprehensive educational programs. our cutting-edge curriculum
-          designed to empower students with the knowledge , skills , and
-          expriences needed to excel in the dynamic fields of education.
+          Embark on a transformative educational journey with our university's
+          comprehensive educational programs. Our cutting-edge curriculum is
+          designed to empower students with the knowledge, skills, and
+          experiences needed to excel in the dynamic fields of education.
         </p>
         <p>
           With a focus on innovation, hands-on learning, and personalized
@@ -25,9 +25,9 @@ const About = () => {
           meaningful impact in classrooms, schools and communities.
         </p>
         <p>
-          Whethe you aspire become a teacher, administrator, counselor, or
-          educational leader, our divers range of programs offers the perfect
-          pathway to achieve your goals and unlock your full potentional in
+          Whether you aspire to become a teacher, administrator, counselor, or
+          educational leader, our diverse range of programs offers the perfect
+          pathway to achieve your goals and unlock your full potential in
           shaping the future of education.
         </p>
       </div>
