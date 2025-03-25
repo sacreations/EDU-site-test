@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import { Link, ScrollLink } from "react-scroll";
+import menu_icon from "../../assets/menu-icon.png";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   const [sticky, setsticky] = useState(false);
@@ -10,10 +11,15 @@ const Navbar = () => {
       window.screenY > 10 ? setsticky(true) : setsticky(false);
     });
   }, []);
+
+  const [mobileMenu, setmobileMenu] = useState(false);
+  const toggleMenu = () => {
+    mobileMenu ? setmobileMenu(false) : setmobileMenu(true);
+  };
   return (
     <nav className={`container ${sticky ? "dark-nav" : ""}`}>
       <img src={logo} alt="" className="logo" />
-      <ul>
+      <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
         <li>
           <Link to="hero" smooth={true} offset={0} duration={500}>
             Home
@@ -51,6 +57,12 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
+      <img
+        src={menu_icon}
+        alt="menu-icon"
+        className="menu-icon"
+        onClick={toggleMenu}
+      />
     </nav>
   );
 };
