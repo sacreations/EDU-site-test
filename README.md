@@ -1,6 +1,8 @@
 # 🎓 EDU-site | Modern Educational Website
 
-![EDU-site Banner](<https://iili.io/3Tk76kg.md.png>)
+<p align="center">
+    <img src="https://iili.io/3Tk76kg.md.png" alt="EDU-site Banner" width="100%" />
+</p>
 
 ## ✨ Overview
 
